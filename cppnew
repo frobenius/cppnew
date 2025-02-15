@@ -1,7 +1,9 @@
 #!/bin/bash
 
+VERSION=XXXXXXXXX
+
 if [ $# -ne 1 ]; then
-    echo "cppnew - C++ project creation tool - 1.0"
+    echo "cppnew - C++ project creation tool - ${VERSION}"
     echo "Usage:"
     echo "        cppnew <project name>"
     echo ""
@@ -17,7 +19,7 @@ fi
 
 mkdir -p $PWD/$name/src
 cd $name
-cp /home/andrea/projects/cpptemplate/CMakePresets.json .
+cp /usr/local/share/cppnew/CMakePresets.json .
 
 echo "cmake_minimum_required (VERSION 3.8)" > ./CMakeLists.txt
 echo "set(VERSION \"1.0.0\")" >> ./CMakeLists.txt
@@ -31,7 +33,7 @@ echo "add_executable (${name} src/main.cpp)" >> ./CMakeLists.txt
 echo "target_link_libraries(${name} PUBLIC -lpthread)" >> ./CMakeLists.txt
 echo ""
 
-cp /home/andrea/projects/cpptemplate/src/main.cpp ./src
+cp /usr/local/share/cppnew/main.cpp ./src
 sed -i 's/hello/${name}/g' ./CMakeLists.txt
 
 git init .
